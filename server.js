@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const errorHandler = require("./middlewares/error");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const socketServer = require("./socketServer");
 
 const app = express();
@@ -13,6 +14,7 @@ io.on("connection", (socket) => {
   socketServer(socket);
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
