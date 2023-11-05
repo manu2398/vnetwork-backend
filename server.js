@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Routes
+app.get("/welcome", (req, res) => res.json({ msg: "welcome" }));
 app.use("/api", require("./routes/authRouter"));
 app.use("/api", require("./routes/userRouter"));
 app.use("/api", require("./routes/postRouter"));
