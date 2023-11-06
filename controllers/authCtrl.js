@@ -66,13 +66,13 @@ const authCtrl = {
   }),
 
   generateAccessToken: asyncHandler(async (req, res, next) => {
-    const rf_token = req.cookies.token;
+    const rf_token = req.headers.authorization;
 
     if (!rf_token) return next(new ErrorResponse("Please login now", 400));
 
     jwt.verify(
       rf_token,
-      process.env.REFRESH_TOKEN_SECRET,
+      process.env.ACCESS_TOKEN_SECRET,
       async (err, result) => {
         if (err) return next(new ErrorResponse("Please login now", 400));
 
